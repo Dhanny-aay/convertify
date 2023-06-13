@@ -5,9 +5,9 @@ const Features = () => {
     return ( 
         <>
         <div className=" mt-14 p-6 text-[#000]">
-            <p className=" font-Exo font-semibold text-center text-4xl">Our Features</p>
-            <p className=" mt-2 font-openSans font-normal text-center text-xl">The all-in-one solution for your file conversion needs</p>
-            <div className=" flex flex-row w-full justify-between items-center px-6 mt-16">
+            <p className=" font-Exo font-semibold text-center text-2xl md:`text-4xl">Our Features</p>
+            <p className="hidden md:block mt-2 font-openSans font-normal text-center text-xl">The all-in-one solution for your file conversion needs</p>
+            <div className=" flex md:flex-row flex-col w-full justify-between items-center px-6 mt-16">
                 <div className=" flex flex-col w-[45%] space-y-[30px]">
                     <span className=" space-y-[12px]">
                         <p className=" font-openSans text-[20px] font-semibold">File conversion</p>
