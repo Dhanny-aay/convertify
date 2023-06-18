@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import logo from '../images/logo.png';
 import rightArrow from '../images/arrow-right.png';
 import uploadIcon from '../images/upload.png';
+import download from '../images/download.png';
+import uploading from '../images/uploading.png';
 import leftOne from '../images/left1.png';
 import rightOne from '../images/right1.png';
 import menu from '../images/menu.png';
@@ -30,20 +32,27 @@ const Hero = () => {
     const app = initializeApp(firebaseConfig);;
     const storage = getStorage(app);
 
+    //my webapp states
     const [uploadFile, setUploadFile] = useState(null);
     const [fileName, setFileName] = useState('');
     const [ fileUrl, setFileUrl] = useState('');
     const [ uploadDbox, setUploadDbox] = useState(true);
     const [convertDbox, setConvertDbox] = useState(false);
+    const [uploadingDbox, setUploadingDbox] = useState(false);
+    const [convertingDbox, setConvertingDbox] = useState(false);
+    const [ downloadDbox, setDownloadDbox] = useState(false);
     const [sizeWarning, setsizeWarning] = useState(false);
+    const [formatWarn, setFormatWarn] = useState(false);
     const [proposedFormat, setProposedFormat] = useState('');
-    const [currFormat, setCurrFormat] = useState('')
+    const [currFormat, setCurrFormat] = useState('');
+    const [downloadUrl, setDownloadUrl] = useState(null);
 
-    console.log(fileUrl);
-    console.log(fileName);
-    console.log(proposedFormat);
-    console.log(currFormat);
+    // console.log(fileUrl);
+    // console.log(fileName);
+    // console.log(proposedFormat);
+    // console.log(currFormat);
 
+    //function to verify size of file uploaded
     const checkSize = (e) =>{
         const uploadedFile = e.target.files[0];
         const uploadName = e.target.value.slice(12);
@@ -60,14 +69,19 @@ const Hero = () => {
       
         setUploadFile(uploadedFile);
         setFileName(uploadName);
-        setsizeWarning(false)
+        setsizeWarning(false);
+        setUploadDbox(false); 
+        setUploadingDbox(true);
     };
 
+
+    //function to get extension of uploaded file
     function getFileExtension(filename) {
         const extension = filename.match(/\.[^.]+$/);
         return extension ? extension[0].slice(1) : '';
     }
 
+    //function to check filename and uploadfile state is not empty
     useEffect(()=> {
         if(fileName && uploadFile){
             makeUrl();
@@ -77,6 +91,16 @@ const Hero = () => {
         }
     },[fileName, uploadFile])
 
+    //check if download url is available
+
+    useEffect(()=>{
+        if(downloadUrl){
+            setConvertingDbox(false);
+            setDownloadDbox(true);
+        }
+    })
+
+    //function to get url for uploaded file
     const makeUrl = ()=>{
         const storageRef = ref(storage, fileName);
 
@@ -85,7 +109,7 @@ const Hero = () => {
             getDownloadURL(storageRef)
             .then((url)=>{
                 setFileUrl(url);
-                setUploadDbox(false);
+                setUploadingDbox(false);
                 setConvertDbox(true);
             })
             .catch((error) => {
@@ -97,24 +121,26 @@ const Hero = () => {
         });
     };
 
-
+    //conversion function
     const convertapi = new ConvertAPI('OtyktDP60XShcQyP');
 
     const convert = ()=>{
+
         if(!proposedFormat){
-            alert("Please select a format");
+            setFormatWarn(true);
         }
         else if(proposedFormat){
+            setFormatWarn(false);
+            setConvertDbox(false);
+            setConvertingDbox(true);
             convertapi.convert(proposedFormat, { File: fileUrl }, currFormat)
             .then(function(result) {
                 // get converted file url
                 console.log("Converted file url: " + result.file.url);
-
-                // save to file
-                return result.file.save('/path/to/save/file.pdf');
+                setDownloadUrl(result.file.url);
             })
             .then(function(file) {
-                console.log("File saved: " + file);
+                console.log("File saved: ");
             })
             .catch(function(e) {
                 console.error(e.toString());
@@ -135,7 +161,7 @@ const Hero = () => {
                         <Image src={ logo } className=" w-5 h-4 md:w-auto md:h-auto" alt="" />
                         <p className=" text-lg md:text-3xl font-semibold font-Exo text-[#f1f1f1]">Convertify</p>
                     </span>
-                    <span className='hidden md:flex space-x-5 items-center'>
+                    <span className='hidden lg:flex space-x-5 items-center'>
                         <p className=' text-lg font-normal text-[#f1f1f1] font-openSans'>About</p>
                         <p className=' text-lg font-normal text-[#f1f1f1] font-openSans'>How it works</p>
                         <p className=' text-lg font-normal text-[#f1f1f1] font-openSans'>Features</p>
@@ -161,12 +187,32 @@ const Hero = () => {
                                 <p className=' font-openSans text-[#121212] font-normal text-base md:text-xl mt-1'>Upload Your File</p>
                                 <p className=' font-openSans text-[#121212] font-normal text-[10px] md:text-xs mt-1'>Up to 60MB</p>
                             </>}
+                            { uploadingDbox && <>
+                                <button className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
+                                    <Image src={ uploading } className=" w-7 h-7" alt="" />
+                                </button>
+                                <p className=' font-openSans text-[#121212] font-normal text-sm md:text-lg mt-2'>image</p>
+                                <p className=' font-openSans text-[#121212] font-normal text-sm  mt-3'>Uploading...</p>
+                            </>}
                             { convertDbox && <>
-                                <button type="file" onClick={ convert } className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative'>
+                                <button type="file" className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
                                     <Image src={ logo } className=" w-7 h-7" alt="" />
                                 </button>
-                                <p className=' font-openSans text-[#121212] font-normal text-sm md:text-lg mt-1'>Convert Your File</p>
-                                <p className=' font-openSans text-[#121212] font-normal text-sm md:text-lg mt-1'>{ fileName }</p>
+                                <p className=' font-openSans text-[#121212] font-normal text-sm md:text-lg mt-2'>{ fileName }</p>
+                                <button  onClick={ convert } className=' font-openSans text-[#121212] font-normal text-sm md:text-base mt-3 border border-[#e3e3e3] rounded-[20px] px-4 py-1 bg-[#f4f4f4]'>Convert File</button>
+                            </>}
+                            { convertingDbox && <>
+                                <button className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
+                                    <Image src={ logo } className=" w-7 h-7" alt="" />
+                                </button>
+                                <p className=' font-openSans text-[#121212] font-normal text-sm md:text-lg mt-2'>image</p>
+                                <p className=' font-openSans text-[#121212] font-normal text-sm  mt-3'>Converting...</p>
+                            </>}
+                            { downloadDbox && <>
+                                <button type="file" className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
+                                    <Image src={ download } className=" w-7 h-7" alt="" />
+                                </button>
+                                <a href={ downloadUrl }><button className=' font-openSans text-[#121212] font-normal text-sm md:text-base mt-3 border border-[#e3e3e3] rounded-[20px] px-4 py-1 bg-[#f4f4f4]'>Download File</button></a>
                             </>}
                         </div>
                     </div>
@@ -191,6 +237,7 @@ const Hero = () => {
                         <option className=" uppercase" value="ocr">ocr</option>
                         <option className=" uppercase" value="zip">zip</option>
                     </select>
+                    { formatWarn && <p className=" text-xs font-openSans text-red-600 font-normal mt-1">*Please select a format</p>}
                 </div>
             </div>
         </div>
