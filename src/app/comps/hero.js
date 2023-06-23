@@ -12,20 +12,22 @@ import uploading from '../images/uploading.png';
 import leftOne from '../images/left1.png';
 import rightOne from '../images/right1.png';
 import menu from '../images/menu.png';
+import flow from '../images/flow.gif'
 import bottomOne from '../images/bottom1.png';
 import bottomTwo from '../images/bottom2.png';
+import { motion } from "framer-motion";
 
 const Hero = () => {
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
-        apiKey: "AIzaSyC0orHDJb8M6MIg_P4PrnFS6rXGDr476mA",
-        authDomain: "bloggy-2d806.firebaseapp.com",
-        projectId: "bloggy-2d806",
-        storageBucket: "bloggy-2d806.appspot.com",
-        messagingSenderId: "243234796538",
-        appId: "1:243234796538:web:e4cd230612d7e07793aa43",
-        measurementId: "G-5KHV35BWT2"
+        apiKey: process.env.NEXT_PUBLIC_API_KEY,
+        authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+        projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+        storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+        messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+        appId: process.env.NEXT_PUBLIC_APP_ID,
+        measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
     };
       
     // Initialize Firebase
@@ -122,7 +124,7 @@ const Hero = () => {
     };
 
     //conversion function
-    const convertapi = new ConvertAPI('OtyktDP60XShcQyP');
+    const convertapi = new ConvertAPI(process.env.NEXT_PUBLIC_CONVERTAPI_KEY);
 
     const convert = ()=>{
 
@@ -151,7 +153,11 @@ const Hero = () => {
     return ( 
         <>
         <div className=" p-4 md:p-6">
-            <div className=" w-full pt-6 md:pt-12 bg-[#121212] pb-12 md:pb-24 rounded-[50px] relative">
+            <motion.div 
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            transition={{duration:0.4}}
+            className=" w-full pt-6 md:pt-6 bg-[#121212] pb-12 md:pb-24 rounded-[50px] relative">
                 <Image src={ leftOne } className=' hidden lg:block absolute left-0 w-[13%] top-[20%]' alt="" />
                 <Image src={ bottomOne } className=' hidden lg:block absolute bottom-0 w-[18%] left-[13%]' alt="" />
                 <Image src={ rightOne } className=' hidden lg:block absolute top-[15%] w-[11%] right-0' alt="" />
@@ -178,7 +184,7 @@ const Hero = () => {
                     <p className=' text-[32px] md:text-[64px] font-Exo font-medium leading-[38px] md:leading-[76px]'>The ultimate file conversion tool</p>
                     <p className=' font-openSans font-normal text-sm md:text-xl mt-6'>Convert all your files to any format you need with Convertify's powerful conversion engine</p>
                     <div className='mt-[64px] md:mt-[78px] border border-[#f1f1f1] border-dashed rounded-[50px] p-3 h-[210px] md:w-[310px] w-[260px]'>
-                        <div className=' w-full h-full bg-[#f1f1f1] rounded-[40px] flex flex-col justify-center items-center'>
+                        <div className=' w-full h-full bg-[#f1f1f1] rounded-[40px] flex flex-col justify-center items-center relative'>
                             { uploadDbox && <>
                                 <button type="file" className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative'>
                                     <input type="file" onChange={ checkSize } className=" w-[60px] h-[60px] cursor-pointer z-50 opacity-0" name="" id="" />
@@ -188,11 +194,11 @@ const Hero = () => {
                                 <p className=' font-openSans text-[#121212] font-normal text-[10px] md:text-xs mt-1'>Up to 60MB</p>
                             </>}
                             { uploadingDbox && <>
-                                <button className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
+                                <button className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center  cursor-default absolute top-8'>
                                     <Image src={ uploading } className=" w-7 h-7" alt="" />
                                 </button>
-                                <p className=' font-openSans text-[#121212] font-normal text-sm md:text-lg mt-2'>image</p>
-                                <p className=' font-openSans text-[#121212] font-normal text-sm  mt-3'>Uploading...</p>
+                                <Image src={ flow } className=" w-auto h-auto mt-14"  alt="" />
+                                <p className=' font-openSans text-[#121212] font-normal text-sm absolute top-36'>Uploading...</p>
                             </>}
                             { convertDbox && <>
                                 <button type="file" className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
@@ -202,11 +208,11 @@ const Hero = () => {
                                 <button  onClick={ convert } className=' font-openSans text-[#121212] font-normal text-sm md:text-base mt-3 border border-[#e3e3e3] rounded-[20px] px-4 py-1 bg-[#f4f4f4]'>Convert File</button>
                             </>}
                             { convertingDbox && <>
-                                <button className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
+                                <button className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center cursor-default absolute top-8'>
                                     <Image src={ logo } className=" w-7 h-7" alt="" />
                                 </button>
-                                <p className=' font-openSans text-[#121212] font-normal text-sm md:text-lg mt-2'>image</p>
-                                <p className=' font-openSans text-[#121212] font-normal text-sm  mt-3'>Converting...</p>
+                                <Image src={ flow } className=" w-auto h-auto mt-14"  alt="" />
+                                <p className=' font-openSans text-[#121212] font-normal text-sm  absolute top-36'>Converting...</p>
                             </>}
                             { downloadDbox && <>
                                 <button type="file" className=' w-[60px] h-[60px] rounded-[50%] bg-[#121212] flex justify-center items-center relative cursor-default'>
@@ -239,7 +245,7 @@ const Hero = () => {
                     </select>
                     { formatWarn && <p className=" text-xs font-openSans text-red-600 font-normal mt-1">*Please select a format</p>}
                 </div>
-            </div>
+            </motion.div>
         </div>
         </>
      );

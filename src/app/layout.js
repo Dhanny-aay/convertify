@@ -10,12 +10,12 @@ const inter = Inter({
 const exo = Exo_2({ 
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-exo',
+  variable: '--font-exo-2',
  })
 const openSans = Open_Sans({ 
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-openSans',
+  variable: '--font-Open-Sans',
  })
 
 export const metadata = {

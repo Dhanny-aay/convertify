@@ -14,8 +14,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
-        Exo: ['var(--font-exo)'],
-        openSans: ['var(--font-openSans)'],
+        Exo: ['var(--font-exo-2)'],
+        openSans: ['var(--font-Open-Sans)'],
       },
     },
   },
