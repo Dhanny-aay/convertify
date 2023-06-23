@@ -165,7 +165,7 @@ const Hero = () => {
                 <div className=' flex flex-row items-center justify-between w-full px-[25px] md:px-[50px]'>
                     <span className=" flex space-x-2 items-center">
                         <Image src={ logo } className=" w-5 h-4 md:w-auto md:h-auto" alt="" />
-                        <p className=" text-lg md:text-2xl font-semibold font-Exo text-[#f1f1f1]">Convertify</p>
+                        <p className=" text-lg md:text-3xl font-semibold font-Exo text-[#f1f1f1]">Convertify</p>
                     </span>
                     <span className='hidden lg:flex space-x-5 items-center'>
                         <p className=' text-lg font-normal text-[#f1f1f1] font-openSans'>About</p>
