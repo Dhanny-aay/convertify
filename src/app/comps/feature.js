@@ -4,7 +4,7 @@ import Image from "next/image";
 import feature1 from '../images/feature1.png';
 import feature2 from '../images/feature2.png';
 import feature3 from '../images/feature3.png';
-import mbfeature1 from '../images/mbfeature1.png';
+import reece from '../images/reece.png';
 import mbfeature2 from '../images/mbfeature2.png';
 import mbfeature3 from '../images/mbfeature3.png';
 import { motion } from "framer-motion";
@@ -73,7 +73,7 @@ const Features = () => {
                 transition={{type:'tween', duration:1,}}
                 >
                     <div className=" w-full h-[400px] rounded-[22px] bg-[#e8e8f2] mb-3 flex justify-center items-center">
-                        <Image src={ mbfeature1 } className=" w-auto h-auto" alt="" />
+                        <Image src={ reece } className=" w-auto h-auto" alt="" />
                     </div>
                     <span className=" space-y-[10px] mt-3">
                             <p className=" font-openSans text-[16px] font-semibold">File conversion</p>
