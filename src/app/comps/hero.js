@@ -157,12 +157,12 @@ const Hero = () => {
             initial={{opacity:0}}
             animate={{opacity:1}}
             transition={{duration:0.4}}
-            className=" w-full pt-6 md:pt-6 bg-[#121212] pb-12 md:pb-24 rounded-[50px] relative">
+            className=" w-full pt-5 md:pt-6  bg-[#121212] pb-20 md:pb-24 rounded-[50px] relative">
                 <Image src={ leftOne } className=' hidden lg:block absolute left-0 w-[13%] top-[20%]' alt="" />
                 <Image src={ bottomOne } className=' hidden lg:block absolute bottom-0 w-[18%] left-[13%]' alt="" />
                 <Image src={ rightOne } className=' hidden lg:block absolute top-[15%] w-[11%] right-0' alt="" />
                 <Image src={ bottomTwo } className=' hidden lg:block rounded-br-[50px] absolute bottom-0 w-[18%] right-0' alt="" />
-                <div className=' flex flex-row items-center justify-between w-full px-[25px] md:px-[50px]'>
+                <div className=' flex flex-row items-center justify-between w-full px-[30px] md:px-[50px]'>
                     <span className=" flex space-x-2 items-center">
                         <Image src={ logo } className=" w-5 h-4 md:w-auto md:h-auto" alt="" />
                         <p className=" text-lg md:text-3xl font-semibold font-Exo text-[#f1f1f1]">Convertify</p>
@@ -223,7 +223,7 @@ const Hero = () => {
                         </div>
                     </div>
                     { sizeWarning && <p className=" text-xs font-Exo font-semibold mt-1">*File size exceeds the limit of 60MB</p>}
-                    <select onChange={(e)=>{setProposedFormat(e.target.value)}} className=' w-[310px] bg-[#f1f1f1] rounded-[50px] mt-4 text-[#000] py-2 px-4 font-openSans font-light text-sm' name="" id="">
+                    <select onChange={(e)=>{setProposedFormat(e.target.value)}} className=' w-[310px] bg-[#f1f1f1] rounded-[50px] mt-16 text-[#000] py-2 px-4 font-openSans font-light text-sm' name="" id="">
                         <option className=" " value="">Choose conversion file format</option>
                         <option className=" uppercase" value="jpg">JPG</option>
                         <option className=" uppercase" value="pdf">PDF</option>
