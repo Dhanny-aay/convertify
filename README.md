@@ -1,6 +1,6 @@
 # Convertify
 
-![Convertify Screenshot](convertify.jpg)
+![Convertify Screenshot](Convertify.jpg)
 
 Convertify is a versatile web app that allows you to convert files easily. Whether you need to convert documents, images, or media files, Convertify has got you covered.
 
