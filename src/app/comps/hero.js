@@ -163,11 +163,11 @@ const Hero = () => {
                 <Image src={ rightOne } className=' hidden lg:block absolute top-[15%] w-[11%] right-0' alt="" />
                 <Image src={ bottomTwo } className=' hidden lg:block rounded-br-[50px] absolute bottom-0 w-[18%] right-0' alt="" />
                 <div className=' flex flex-row items-center justify-between w-full px-[30px] md:px-[50px]'>
-                    <span className=" flex space-x-2 items-center">
-                        <Image src={ logo } className=" w-5 h-4 md:w-auto md:h-auto" alt="" />
+                    <span className=" flex space-x-2 items-center justify-center">
+                        <Image src={ logo } className=" w-5 h-4 md:w-7 md:h-auto" alt="" />
                         <p className=" text-lg md:text-3xl font-semibold font-Exo text-[#f1f1f1]">Convertify</p>
                     </span>
-                    <span className='hidden lg:flex space-x-5 items-center'>
+                    <span className='hidden lg:flex space-x-8 items-center'>
                         <p className=' text-lg font-normal text-[#f1f1f1] font-openSans'>About</p>
                         <p className=' text-lg font-normal text-[#f1f1f1] font-openSans'>How it works</p>
                         <p className=' text-lg font-normal text-[#f1f1f1] font-openSans'>Features</p>
