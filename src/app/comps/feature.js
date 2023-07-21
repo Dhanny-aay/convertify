@@ -8,31 +8,36 @@ import reece from '../images/reece.png';
 import mbfeature2 from '../images/mbfeature2.png';
 import mbfeature3 from '../images/mbfeature3.png';
 import { motion } from "framer-motion";
+import { useScrollContext } from "./context";
 
 const Features = () => {
     const [one, setOne] = useState(true);
     const [two, setTwo] = useState(false);
     const [three, setThree] = useState(false);
+
+    const { targetRefs } = useScrollContext();
+
     return ( 
         <>
         <motion.div 
         initial={{opacity:0, y:250}}
         whileInView={{opacity:1, y:0}}
         transition={{type:'tween', duration:1,}}
+        ref={targetRefs.targetElement3}
         className=" mt-14 p-6 text-[#000] hidden lg:block">
             <p className=" font-Exo font-semibold text-center text-2xl md:text-4xl">Our Features</p>
             <p className="hidden md:block mt-2 font-openSans font-normal text-center text-xl">The all-in-one solution for your file conversion needs</p>
             <div className=" flex md:flex-row flex-col w-full justify-between items-center px-6 mt-16">
                 <div className=" flex flex-col w-[45%] h-full space-y-[30px]">
-                    <span className=" space-y-[12px]" onMouseOver={()=>{setOne(true); setTwo(false); setThree(false)}}>
+                    <span className=" space-y-[12px]" >
                         <p className=" font-openSans text-[20px] font-semibold">File conversion</p>
                         <p className=" font-openSans text-[14px] font-normal">Convertify allows users to convert various file types to multiple formats, including PDFs, images, and audio files. This means that users can quickly and easily transform their files into the format they need.</p>
                     </span>
-                    <span className=" space-y-[12px]" onMouseOver={()=>{setOne(false); setTwo(true); setThree(false)}}>
+                    <span className=" space-y-[12px]" >
                         <p className=" font-openSans text-[20px] font-semibold">Cloud-based technology</p>
                         <p className=" font-openSans text-[14px] font-normal">Convertify uses cloud-based technology to ensure that the conversion process is fast, reliable, and secure. This means that users can access their files from anywhere and be confident that their files are safe and protected.</p>
                     </span>
-                    <span className=" space-y-[12px]" onMouseOver={()=>{setOne(false); setTwo(false); setThree(true)}}>
+                    <span className=" space-y-[12px]" >
                         <p className=" font-openSans text-[20px] font-semibold">Customizable output settings</p>
                         <p className=" font-openSans text-[14px] font-normal">Convertify allows users to customize the output settings for their converted files. This means that users can choose the quality, resolution, size, and other parameters of their files according to their needs. With this feature, users can ensure that their converted files meet their specific requirements and are optimized for their intended use.</p>
                     </span>
@@ -40,7 +45,7 @@ const Features = () => {
                 { one &&<motion.div 
                 initial={{ y:350}}
                 whileInView={{ y:0}}
-                transition={{type:'spring',stiffness:50, duration:0.6,}}
+                transition={{type:'spring',stiffness:50, duration:0.6}}
                 className=" w-[45%] h-[507px] rounded-[40px] bg-[#e8e8f2] flex justify-center items-center">
                     <Image src={ feature1 } className=" w-full h-auto" alt="" />
                 </motion.div>}
@@ -109,6 +114,6 @@ const Features = () => {
         </motion.div>
         </>
      );
-}
+};
  
 export default Features;

@@ -16,6 +16,12 @@
   }
 }
 
+.centered {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: #fff;

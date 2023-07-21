@@ -1,14 +1,21 @@
 "use client"; // This is a client component 👈🏽
 import { motion } from "framer-motion";
+import { useScrollContext } from "./context";
+
 
 
 const Advert = () => {
+
+    const { targetRefs } = useScrollContext();
+
+    
     return ( 
         <>
         <motion.div
         initial={{opacity:0, y:250}}
         whileInView={{opacity:1, y:0}}
         transition={{type:'tween', duration:1,}}
+        ref={targetRefs.targetElement2}
         className=" p-4 md:p-12 mt-8 md:mt-16">
             <div className=" w-full flex flex-col justify-center text-white items-center bg-[#121212] md:rounded-[40px] rounded-[22px] h-[220px] md:h-[400px] space-y-[20px] p-2 md:p-0 text-center">
                 <p className=" text-2xl md:text-4xl font-semibold font-Exo">Start your file conversion</p>

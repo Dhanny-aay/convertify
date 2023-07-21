@@ -1,13 +1,17 @@
 "use client"; // This is a client component 👈🏽
 import { motion } from "framer-motion";
+import { useScrollContext } from "./context";
 
 const Works = () => {
+
+    const { targetRefs } = useScrollContext();
     return ( 
         <>
         <motion.div
         initial={{opacity:0, y:250}}
         whileInView={{opacity:1, y:0}}
         transition={{type:'tween', duration:1,}}
+        ref={targetRefs.targetElement1}
         className=" md:mt-14 p-4 mt-7 md:p-6 text-[#000]">
             <p className=" font-Exo font-semibold text-center text-2xl md:text-4xl">How it works</p>
             <p className="mt-2 font-openSans font-normal text-center text-base md:text-xl">Find out how to use Convertify for all your file conversion needs</p>

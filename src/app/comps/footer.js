@@ -1,7 +1,22 @@
+"use client"; // This is a client component 👈🏽
 import Image from "next/image";
 import logoFooter from '../images/logoFooter.png';
+import { useScrollContext } from "./context";
 
 const Footer = () => {
+
+    const { scrollToElement, targetRefs } = useScrollContext();
+
+    const handleScrollClick1 = () => {
+        scrollToElement(targetRefs.targetElement1);
+    };
+    const handleScrollClick2 = () => {
+      scrollToElement(targetRefs.targetElement2);
+    };
+    const handleScrollClick3 = () => {
+      scrollToElement(targetRefs.targetElement3);
+    };
+
     return ( 
         <>
         <div className=" md:mt-16 mt-8 mb-8 px-4 md:px-12">
@@ -11,9 +26,9 @@ const Footer = () => {
                     <p className=" text-2xl font-semibold font-Exo text-[#121212]">Convertify</p>
                 </span>
                 <span className='flex justify-between md:justify-center w-full md:space-x-7 mt-6 md:mt-0 items-center'>
-                    <p className=' text-sm font-normal text-[#121212] font-openSans'>About</p>
-                    <p className=' text-sm font-normal text-[#121212] font-openSans'>How it works</p>
-                    <p className=' text-sm font-normal text-[#121212] font-openSans'>Features</p>
+                    <p onClick={handleScrollClick2} className=' text-sm cursor-pointer font-normal text-[#121212] font-openSans'>About</p>
+                    <p onClick={handleScrollClick1} className=' text-sm cursor-pointer font-normal text-[#121212] font-openSans'>How it works</p>
+                    <p onClick={ handleScrollClick3 } className=' text-sm cursor-pointer font-normal text-[#121212] font-openSans'>Features</p>
                 </span>
                 <p className="text-[#121212]">socials</p>
             </div>
