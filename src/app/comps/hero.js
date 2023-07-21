@@ -184,11 +184,11 @@ const Hero = () => {
     };
 
     const { scrollToElement, targetRefs } = useScrollContext();
-    const isMobile = window.innerWidth < 768;
-
+    
     const handleScrollClick1 = () => {
         scrollToElement(targetRefs.targetElement1);
         if (typeof window !== 'undefined'){
+            const isMobile = window.innerWidth < 768;
             if(isMobile){
                 overlay();
             }
@@ -197,6 +197,7 @@ const Hero = () => {
     const handleScrollClick2 = () => {
       scrollToElement(targetRefs.targetElement2);
       if (typeof window !== 'undefined'){
+        const isMobile = window.innerWidth < 768;
         if(isMobile){
             overlay();
         }
@@ -205,6 +206,7 @@ const Hero = () => {
     const handleScrollClick3 = () => {
       scrollToElement(targetRefs.targetElement3);
       if (typeof window !== 'undefined'){
+        const isMobile = window.innerWidth < 768;
         if(isMobile){
             overlay();
         }
