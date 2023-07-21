@@ -188,21 +188,26 @@ const Hero = () => {
 
     const handleScrollClick1 = () => {
         scrollToElement(targetRefs.targetElement1);
-        if(isMobile){
-            overlay();
+        if (typeof window !== 'undefined'){
+            if(isMobile){
+                overlay();
+            }
         }
     };
     const handleScrollClick2 = () => {
       scrollToElement(targetRefs.targetElement2);
-      if(isMobile){
-        overlay();
+      if (typeof window !== 'undefined'){
+        if(isMobile){
+            overlay();
+        }
     }
-
     };
     const handleScrollClick3 = () => {
       scrollToElement(targetRefs.targetElement3);
-      if(isMobile){
-        overlay();
+      if (typeof window !== 'undefined'){
+        if(isMobile){
+            overlay();
+        }
     }
     };
     
