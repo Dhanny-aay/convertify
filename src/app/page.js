@@ -1,4 +1,5 @@
 // import Image from 'next/image';
+"use client"; // This is a client component 👈🏽
 import Advert from './comps/advert';
 import { ScrollProvider } from './comps/context';
 import Features from './comps/feature';
