@@ -227,7 +227,7 @@ const Hero = () => {
 
     return ( 
         <>
-        <div id="overlay" className=" w-full bg-[#121212d3] backdrop-blur-sm h-[400px] flex justify-center items-center -translate-y-[500px] shadow transition-all duration-500 fixed z-[1]">
+        <div id="overlay" className=" w-full bg-[#000] backdrop-blur-sm h-[400px] flex justify-center items-center -translate-y-[500px] shadow transition-all duration-500 fixed z-[1]">
             <div className=" flex flex-col justify-center items-center space-y-5">
                 <p onClick={handleScrollClick1} className=" font-medium cursor-pointer text-base font-openSans">How it works</p>
                 <p onClick={handleScrollClick3} className=" font-medium cursor-pointer text-base font-openSans">Features</p>
